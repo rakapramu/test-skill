@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('reference_no');
+            $table->bigInteger('price');
+            $table->integer('quantity');
+            $table->bigInteger('payment_amount');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')
+                ->references('id')
+                ->on('products')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
